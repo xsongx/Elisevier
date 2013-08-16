@@ -1,0 +1,10 @@
+#latex
+*.pdf
+*.bst
+*.cls
+*.log
+*.aux
+*.dvi
+*.ps
+*.gz
+*.bbl
