@@ -1,14 +1,13 @@
 \documentclass[preprint]{elsarticle}
-\usepackage{times}
+%\usepackage{times}
 \usepackage{url}
-\usepackage{authblk}
-\usepackage{changepage}
-\usepackage{latexsym}
-\setcounter{tocdepth}{3}
-\usepackage{graphicx}
+%\usepackage{authblk}
+%\usepackage{changepage}
+%\usepackage{latexsym}
+%\setcounter{tocdepth}{3}
 \usepackage{graphicx}
 \usepackage{mdwlist}
-\usepackage{wrapfig}
+%\usepackage{wrapfig}
 %\usepackage{indentfirst}
 \usepackage{amsmath,amsthm,amssymb}
 \newtheorem{definition}{Definition}
@@ -16,21 +15,27 @@
 \newtheorem{theorem}{Theorem}
 \begin{document}
 \title{Resonation Elicits Retweet: Modeling Subjectivity For Retweet Analysis}
-\author{SongXian Xie\thanks{E-mail: xsongx@nudt.edu.cn}}
-\author{Ting Wang}
-\affil{Department of Computer, National University of Defense Technology, Changsha, China}
-\renewcommand\Authands{    and }
-\date{}
-\maketitle
+
+\author[rvf]{SongXian Xie\corref{cor1}\fnref{fn1}}
+\ead{xsongx@nudt.edu.cn}
+
+\author[rvf]{Ting Wang\fnref{fn2}}
+\ead{Tingwang@nudt.edu.cn}
+
+\cortext[cor1]{Corresponding author}
+\fntext[fn1]{This is the Xie author footnote.}
+\fntext[fn2]{This is the Wang author footnote.}
+\address[rvf]{Department of Computer, National University of Defense Technology, \\Changsha, China, 410073}
+
 \begin{abstract}
 Retweet is the core mechanism of information diffusion on Twitter, and many factors have been proved to influence rewteet behavior, however few studies have investigated the subjective motivation of a user to retweet a message.
 In this paper, in the light of psychological theory, we assume that a tweet is retweeted by a user because of similar subjectivity, and propose a subjective model to combine both the topics of interest and opinions of users. Technically, We use the state-of-the-art Latent Dirichlet Allocation topic model to find the topics users are talking about, and sentiment analysis techniques to determine user's opinions towards these topics from user-generated content simultaneously. 
 We evaluate our model in the retweet analysis problem to verify its influence on retweet behavior and effectiveness in the retweet prediction performance. 
-\begin{flushleft}
-\textbf{Keywords:} Twitter; LDA; sentiment analysis; retweet; subjectivity
-\end{flushleft}
 \end{abstract}
-
+\begin{keyword}
+Twitter \sep LDA \sep sentiment analysis \sep retweet \sep subjectivity
+\end{keyword}
+\maketitle
 \section{Introduction}
 \label{introduction}
 Twitter is well-known for its freedom of publishing short message(i.e. tweet) within a limited length of 140 characters, and viral spreading of information across complex social networks.
@@ -208,10 +213,11 @@ We adapt the original LDA model to the Twitter by replacing documents with aggre
 Hence a user can be represented as a multinomial distribution over topics corresponding to the topic distribution of the user's subjective model.
 The generative process can be graphically represented using plate notation in Figure~\ref{fig:graph2}. 
 \begin{figure}[htb]
-\setlength{\belowcaptionskip}{-0.2cm} 
+%\setlength{\belowcaptionskip}{-0.2cm} 
 \centering
 \includegraphics[width=3.0in,height=1.2in]{LDA.pdf}
-\vspace{-4em}\caption{Plate illustration of the user-level LDA model.}
+%\vspace{-4em}
+\caption{Plate illustration of the user-level LDA model.}
 \label{fig:graph2}
 \end{figure}
 Formally, given a set of users $ U $ and the number of topics $ K $, each user $ u \in U $ could be represented by a multinomial distribution $ \theta_{u} $ over topics with a Dirichlet prior parameterized by $ \alpha $. 
@@ -351,29 +357,32 @@ Total non-retweeters & 40317  \\
 As the core of our work, how to build subjective model has been elaborated in section~\ref{concrete}, in this section we give an qualitative description about subjective model and its ability in explaining the retweet behavior with an intuitive exmple. 
 There are 500 test tweets, 500 corresponding publishers, 4,5531 followers and 6,277,736 published tweets in the dataset, the relations are illustrated in Figure~\ref{fig:graph3}.
 \begin{figure}[htb]
-\setlength{\belowcaptionskip}{-0.2cm} 
+%\setlength{\belowcaptionskip}{-0.2cm} 
 \centering%
 \includegraphics[width=3.8in,height=2.5in]{dataset.pdf}
-\vspace{-4em}\caption{Illustration of dataset structure.}
+%\vspace{-4em}
+\caption{Illustration of dataset structure.}
 \label{fig:graph3}
 \end{figure}
 There is a local network structure for each tweet of 500 test tweets as figure shows, consisting of its publisher and followers connected with ``following'' relationship.
 We build a local topic space for each local network in which subjective models of users and tweets are built.
 As an example, we present subjective models for one of the 500 test tweet, its publisher, and two followers(one retweet the tweet while the other does not) as Figure~\ref{fig:graph4} shows, in which the right part of each model is topic distribution, the left part is opinion distribution for each topic.
 \begin{figure}[htb]
-\setlength{\belowcaptionskip}{-0.2cm} 
+%\setlength{\belowcaptionskip}{-0.2cm} 
 \centering%,bb=0 0 1280 960
 \includegraphics[width=6.0in,height=3.8in]{tweets10.pdf}
-\vspace{-4em}\caption{Subjective model examples.}
+%\vspace{-4em}
+\caption{Subjective model examples.}
 \label{fig:graph4}
 \end{figure}
 It is the 14th topic that the tweet talks about in the local topic space.
 In order to make Figure~\ref{fig:graph4} vividly, we plot top words of the 14th topic , the tweets of publishers and two followers in a word cloud figure as Figure~\ref{fig:graph5} shows\footnote{We use TagCrowd(\url{http://tagcrowd.com/}) to produce word cloud}.
 \begin{figure}[htb]
-\setlength{\belowcaptionskip}{-0.2cm} 
+%\setlength{\belowcaptionskip}{-0.2cm} 
 \centering
 \includegraphics[width=4.0in,height=2.5in]{text_cloud.pdf}
-\vspace{-3em}\caption{Word cloud of 14th topic, publisher and followers}
+%\vspace{-3em}
+\caption{Word cloud of 14th topic, publisher and followers}
 \label{fig:graph5}
 \end{figure}
 In the example, the test tweet content is:\\
@@ -399,10 +408,11 @@ By setting different value to $ \lambda $, the measurement can be divided into d
 To analyze the influence of different factors on retweet, we averaged six similarity scores on 5214 followers who rewteet the test tweets and 5214 randomly selected followers who do not rewteet separately. 
 Figure~\ref{fig:graph6} shows the comparing result.
 \begin{figure}[htb]
-\setlength{\belowcaptionskip}{-0.2cm} 
+%\setlength{\belowcaptionskip}{-0.2cm} 
 \centering
 \includegraphics[width=3.8in,height=2.8in]{component.pdf}
-\vspace{-4em}\caption{Influence of different factors on retweet.}
+%\vspace{-4em}
+\caption{Influence of different factors on retweet.}
 \label{fig:graph6}
 \end{figure}
 As the figure demonstrated, on average, the similarities scores of retweeted followers are clearly higher than unretweeted followers for all six factors, which proves that our assumption is reasonable. Specifically,
@@ -437,10 +447,11 @@ We use the logistic regression classifier of Scikit-learn machine learning packa
 And accuracy measurement is used for evaluation.
 Figure~\ref{fig:graph7} shows the results of our model and all other models.
 \begin{figure}[htb]
-\setlength{\belowcaptionskip}{-0.2cm} 
+%\setlength{\belowcaptionskip}{-0.2cm} 
 \centering
 \includegraphics[width=4.5in,height=3.0in]{comparison.pdf}
-\vspace{-4em}\caption{Comparison of different models.}
+%\vspace{-4em}
+\caption{Comparison of different models.}
 \label{fig:graph7}
 \end{figure}
 The highest accuracy of 68.67\% is the STF(Subjective similarity between Tweet and Followers) model, which is clearly better than other models. 
